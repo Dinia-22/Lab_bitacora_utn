@@ -28,7 +28,7 @@ public class controladorVehiculo {
 
     public void conectar() {
         try {
-            this.conexion = DriverManager.getConnection("jdbc:mysql://localhost/vehiculos?useServerPrepStmts=true", "root", "");
+            this.conexion = DriverManager.getConnection("jdbc:mysql://localhost/vehículos?useServerPrepStmts=true", "root", "");
             this.sentencias = this.conexion.createStatement();
             //FrameConfi confi = new FrameConfi();
             //confi.setVisible(true);
@@ -45,15 +45,14 @@ public class controladorVehiculo {
             this.datos = this.sentencias.getGeneratedKeys();
             if (datos.next()) {
                 System.out.println(datos.getInt(1));
+                System.out.println(datos.getInt(2));
                 System.out.println(" se agrego de manera exitosa");
                 return true;
-            } else {
-                return false;
-            }
+            }           
         } catch (SQLException ex) {
             System.out.println("Error al agregar");
-            return false;
         }
+        return false;
     }
 
     public String buscar(Vehículo auto) {
