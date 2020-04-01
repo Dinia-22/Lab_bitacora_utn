@@ -40,7 +40,7 @@ public class Controlador_Bitacora {
         }
     }
 
-    public void Agregar( Bitacora bit) {
+    public void create( Bitacora bit) {
         try {
 
             this.sentencias.executeUpdate("insert into bitacora values(null,'"+ bit.getPlaca() +"','"+ bit.getDestino()+"')",Statement.RETURN_GENERATED_KEYS);
