@@ -10,13 +10,14 @@ package VehiculoModelo;
  * @author juan1
  */
 public class Vehículo {
+    
     private int id;
     private String placa;
     private String descripcion;
 
-    public Vehículo(String placa) {
+    public Vehículo() {
         this.id = 0;
-        this.placa = placa;
+        this.placa = null;
         this.descripcion = null;
     }
 
@@ -26,6 +27,11 @@ public class Vehículo {
         this.descripcion = descripcion;
     }
 
+    public Vehículo(String placa){
+        this.id=0;
+        this.placa=placa;
+        this.descripcion=null;
+    }
     
     public int getId() {
         return id;
@@ -50,9 +56,7 @@ public class Vehículo {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
-   
-    
+     
     public boolean Comprobar(){
         if ( !this.placa.equals(" ")&& this.descripcion.equals(" ") ){
             return true;      
