@@ -22,10 +22,7 @@ public class main {
         Vehículo prueba = new Vehículo ();
         control.conectar();
         control.create(prueba);
-     
-        
-  
-        
+         
         //System.out.println(control.create("nissan","rojo"));
     }
 

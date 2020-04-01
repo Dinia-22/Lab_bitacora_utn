@@ -41,7 +41,7 @@ public class controladorVehiculo {
     public boolean create(Vehículo auto) {
         try {
             //this.sentencias.executeUpdate("insert into vehículos values(null,'" + placa + "','" + descripcion + "')", Statement.RETURN_GENERATED_KEYS);
-            this.sentencias.executeUpdate("insert into vehiculos values(null,'" + auto.getPlaca() + "','" + auto.getDescripcion() + "')", Statement.RETURN_GENERATED_KEYS);
+            this.sentencias.executeUpdate("insert into vehículos values(null,'" + auto.getPlaca() + "','" + auto.getDescripcion() + "')", Statement.RETURN_GENERATED_KEYS);
             this.datos = this.sentencias.getGeneratedKeys();
             if (datos.next()) {
                 System.out.println(datos.getInt(1));
