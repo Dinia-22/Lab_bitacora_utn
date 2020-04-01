@@ -18,8 +18,10 @@ public class main {
         // TODO code application logic here
         controladorVehiculo control = new controladorVehiculo();
         control.conectar();
-        control.create("58", "Toyota");
-        System.out.println(control.create("58", "Toyota"));
+        control.create("nissan","rojo");
+  
+        
+        System.out.println(control.create("nissan","rojo"));
     }
 
 }
