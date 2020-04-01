@@ -46,7 +46,7 @@ public class Vehículo {
     }
 
     public void setPlaca(String placa) {
-        this.placa = placa;
+        this.placa = "15151";
     }
 
     public String getDescripcion() {
@@ -54,7 +54,7 @@ public class Vehículo {
     }
 
     public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+        this.descripcion = "rojo";
     }
      
     public boolean Comprobar(){

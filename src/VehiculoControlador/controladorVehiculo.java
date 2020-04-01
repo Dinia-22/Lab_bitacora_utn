@@ -5,7 +5,7 @@
  */
 package VehiculoControlador;
 
-import Grafica.FrameConfi;
+//import Grafica.FrameConfi;
 import VehiculoModelo.Vehículo;
 
 import java.sql.Connection;
@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class controladorVehiculo {
 
-    //Vehículo auto=new Vehículo();
+    Vehículo auto=new Vehículo();
     
     private Connection conexion;
     private Statement sentencias;
@@ -31,20 +31,20 @@ public class controladorVehiculo {
         try {
             this.conexion = DriverManager.getConnection("jdbc:mysql://localhost/vehículos?useServerPrepStmts=true", "root", "");
             this.sentencias = this.conexion.createStatement();
-//            FrameConfi confi = new FrameConfi();
-//            confi.setVisible(true);
+            //FrameConfi confi = new FrameConfi();
+            //confi.setVisible(true);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error al conectar");
-            //System.out.println(" Error al conectar");
+            //JOptionPane.showMessageDialog(null, " Error al conectar");
+            System.out.println(" Error al conectar");
         }
     }
 
-    public boolean Agregar(Vehículo auto) {
+    public boolean create(String placa,String descripcion) {
         try {
-            this.sentencias.executeUpdate("insert into vehiculos values(null,'" + auto.getId() + "," + auto.getPlaca() + "','" + auto.getDescripcion() + "')", Statement.RETURN_GENERATED_KEYS);
+            //this.sentencias.executeUpdate("insert into vehículos values(null,'" + placa + "','" + descripcion + "')", Statement.RETURN_GENERATED_KEYS);
+            this.sentencias.executeUpdate("insert into vehiculos values(null,'" + auto.setPlaca() + "','" + auto.setDescripcion() + "')", Statement.RETURN_GENERATED_KEYS);
             this.datos = this.sentencias.getGeneratedKeys();
             if (datos.next()) {
-
                 System.out.println(datos.getInt(1));
                 System.out.println(" se agrego de manera exitosa");
                 return true;
@@ -54,7 +54,6 @@ public class controladorVehiculo {
             return false;
         }
         return false;
-
     }
 
     public boolean buscar(int id) {
@@ -83,4 +82,5 @@ public class controladorVehiculo {
             return false;
         }
     }
+    
 }
