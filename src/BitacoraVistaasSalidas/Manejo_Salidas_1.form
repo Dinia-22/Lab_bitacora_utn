@@ -68,11 +68,11 @@
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="txtdestino" min="-2" pref="69" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                                          <Component id="txtfsalida" min="-2" pref="72" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="fecha" min="-2" pref="103" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
@@ -85,6 +85,7 @@
                                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                   <Component id="kInicio" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -134,10 +135,12 @@
                                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="txtdestino" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtfsalida" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txthsalida" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="txtdestino" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txthsalida" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="fecha" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -242,8 +245,6 @@
             <Property name="text" type="java.lang.String" value="Hora de Salida"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtfsalida">
-        </Component>
         <Component class="javax.swing.JTextField" name="txthsalida">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
@@ -272,6 +273,11 @@
               <Image iconType="3" name="/Imagenes/cancelar.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelarActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="com.toedter.calendar.JDateChooser" name="fecha">
         </Component>
       </SubComponents>
     </Container>

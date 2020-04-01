@@ -5,13 +5,21 @@
  */
 package BitacoraVistaasSalidas;
 
+import BitacoraModelo.Bitacora;
+import Clases.Conectar_base;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Dinia Alvarado
  */
 public class Manejo_Salidas_1 extends javax.swing.JFrame {
-    
 
     /**
      * Creates new form Manejo_Salidas
@@ -41,12 +49,12 @@ public class Manejo_Salidas_1 extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtdestino = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtfsalida = new javax.swing.JTextField();
         txthsalida = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         kInicio = new javax.swing.JSpinner();
         guardar = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
+        fecha = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,6 +96,11 @@ public class Manejo_Salidas_1 extends javax.swing.JFrame {
         });
 
         cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cancelar.png"))); // NOI18N
+        cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
@@ -112,26 +125,24 @@ public class Manejo_Salidas_1 extends javax.swing.JFrame {
                             .addGroup(jInternalFrame1Layout.createSequentialGroup()
                                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                                .addComponent(jLabel4)
-                                                .addGap(33, 33, 33)
-                                                .addComponent(jLabel5))
-                                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                                .addComponent(txtdestino, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(29, 29, 29)
-                                                .addComponent(txtfsalida, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                                .addGap(6, 6, 6)
-                                                .addComponent(txthsalida, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(jLabel6)))
+                                        .addComponent(jLabel4)
+                                        .addGap(33, 33, 33)
+                                        .addComponent(jLabel5))
                                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addGap(27, 27, 27)
-                                        .addComponent(kInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                        .addComponent(txtdestino, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, Short.MAX_VALUE)
+                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(txthsalida, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel6)))
+                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(27, 27, 27)
+                                .addComponent(kInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
@@ -168,10 +179,11 @@ public class Manejo_Salidas_1 extends javax.swing.JFrame {
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel6))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtdestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtfsalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txthsalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(txtdestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txthsalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(33, 33, 33)
                                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel7)
@@ -200,9 +212,22 @@ public class Manejo_Salidas_1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
+        Bitacora modelo = new Bitacora(1, "", "", 2, 3, 4, 5, 6, 7, "");
+        Conectar_base coneccion = new Conectar_base();
+        try {
+            Connection connexion = DriverManager.getConnection("jdbc:mysql://localhost/vehiculos?useServerPrepStmts=true", "root", "");
+            Statement sentencia = connexion.createStatement();
+            SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+            sentencia.executeUpdate("insert into factura values(null,'" +txtplaca.getText()+ txtdescripcion.getText()+txtdestino.getText()+lista+ f.format(fecha.getDate()) + "','" + txthsalida.getText() + kInicio +"')");
+        } catch (SQLException ex) {
+            Logger.getLogger(Manejo_Salidas_1.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-        
     }//GEN-LAST:event_guardarActionPerformed
+
+    private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_cancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,6 +267,7 @@ public class Manejo_Salidas_1 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelar;
+    private com.toedter.calendar.JDateChooser fecha;
     private javax.swing.JButton guardar;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
@@ -256,7 +282,6 @@ public class Manejo_Salidas_1 extends javax.swing.JFrame {
     private javax.swing.JList<String> lista;
     private javax.swing.JTextField txtdescripcion;
     private javax.swing.JTextField txtdestino;
-    private javax.swing.JTextField txtfsalida;
     private javax.swing.JTextField txthsalida;
     private javax.swing.JTextField txtplaca;
     // End of variables declaration//GEN-END:variables
