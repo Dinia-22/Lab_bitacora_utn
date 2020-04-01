@@ -21,7 +21,7 @@ public class main {
         controladorVehiculo control = new controladorVehiculo();
         Vehículo prueba = new Vehículo ();
         control.conectar();
-        control.create(prueba);
+        //control.create(prueba);
         control.update(prueba);
         control.delete(prueba);
 //        System.out.println("");

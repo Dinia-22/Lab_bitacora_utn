@@ -275,7 +275,7 @@ public class Manejo_Llegadas extends javax.swing.JFrame {
         Bitacora modelo = new Bitacora(1, "", "", 2, 3, 4, 5, 6, 7, "");
         Conectar_base coneccion = new Conectar_base();
         try {
-            Connection connexion = DriverManager.getConnection("jdbc:mysql://localhost/vehiculos?useServerPrepStmts=true", "root", "");
+            Connection connexion = DriverManager.getConnection("jdbc:mysql://localhost/vehículos?useServerPrepStmts=true", "root", "");
             Statement sentencia = connexion.createStatement();
             SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
             sentencia.executeUpdate("insert into factura values(null,'" + txxtplaca.getText() + txtdescripcion.getText() + jList1 + txtdestino.getText() + f.format(fechasalida.getDate()) + "','" + txthsalida.getText() + kInicial + txthllegada.getText() + f.format(fechallegada.getDate()) + kFinal + "')");
