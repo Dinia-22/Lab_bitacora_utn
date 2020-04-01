@@ -75,7 +75,7 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="txtdestino" min="-2" pref="62" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="jDateChooser4" min="-2" max="-2" attributes="0"/>
+                                          <Component id="fechasalida" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -164,7 +164,7 @@
                                   <Component id="txtdestino" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txthsalida" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jDateChooser4" min="-2" max="-2" attributes="0"/>
+                              <Component id="fechasalida" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -326,6 +326,9 @@
               <Image iconType="3" name="/Imagenes/save.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="cancelar">
           <Properties>
@@ -333,10 +336,13 @@
               <Image iconType="3" name="/Imagenes/cancelar.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser3">
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser4">
+        <Component class="com.toedter.calendar.JDateChooser" name="fechasalida">
         </Component>
       </SubComponents>
     </Container>

@@ -5,11 +5,26 @@
  */
 package BitacoraVistaLLegadas;
 
+import BitacoraModelo.Bitacora;
+import BitacoraVistaasSalidas.Manejo_Salidas_1;
+import Clases.Conectar_base;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Dinia Alvarado
  */
 public class Manejo_Llegadas extends javax.swing.JFrame {
+
+    private Statement sentencias;
+    private ResultSet datos;
 
     /**
      * Creates new form Manejo_Llegadas
@@ -51,7 +66,7 @@ public class Manejo_Llegadas extends javax.swing.JFrame {
         guardar = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
         jDateChooser3 = new com.toedter.calendar.JDateChooser();
-        jDateChooser4 = new com.toedter.calendar.JDateChooser();
+        fechasalida = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,8 +110,18 @@ public class Manejo_Llegadas extends javax.swing.JFrame {
         jLabel10.setText("Fecha de Llegada");
 
         guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/save.png"))); // NOI18N
+        guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarActionPerformed(evt);
+            }
+        });
 
         cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cancelar.png"))); // NOI18N
+        cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
@@ -128,7 +153,7 @@ public class Manejo_Llegadas extends javax.swing.JFrame {
                                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
                                         .addComponent(txtdestino, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jDateChooser4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(fechasalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
                                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
@@ -192,7 +217,7 @@ public class Manejo_Llegadas extends javax.swing.JFrame {
                             .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(txtdestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txthsalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jDateChooser4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(fechasalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
@@ -229,6 +254,39 @@ public class Manejo_Llegadas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public void read(int Placa) {
+        try {
+            this.datos = this.sentencias.executeQuery("select * from bitacora where placa=" + Placa);
+            if (this.datos.next()) {
+                System.out.println(datos.getInt(1));
+                System.out.println(datos.getString(2));
+                System.out.println(datos.getString(3));
+            } else {
+                System.out.println("  el vehículo no tiene pendientes ");
+            }
+        } catch (SQLException ex) {
+            System.out.println(" Error en el read");
+        }
+
+    }
+
+    private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
+        Bitacora modelo = new Bitacora(1, "", "", 2, 3, 4, 5, 6, 7, "");
+        Conectar_base coneccion = new Conectar_base();
+        try {
+            Connection connexion = DriverManager.getConnection("jdbc:mysql://localhost/vehiculos?useServerPrepStmts=true", "root", "");
+            Statement sentencia = connexion.createStatement();
+            SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+            sentencia.executeUpdate("insert into factura values(null,'" + txxtplaca.getText() + txtdescripcion.getText() + jList1 + txtdestino.getText() + f.format(fechasalida.getDate()) + "','" + txthsalida.getText() + kInicial + txthllegada.getText() + f.format(fechasalida.getDate()) + kFinal + "')");
+        } catch (SQLException ex) {
+            Logger.getLogger(Manejo_Salidas_1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_guardarActionPerformed
+
+    private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,9 +325,9 @@ public class Manejo_Llegadas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelar;
+    private com.toedter.calendar.JDateChooser fechasalida;
     private javax.swing.JButton guardar;
     private com.toedter.calendar.JDateChooser jDateChooser3;
-    private com.toedter.calendar.JDateChooser jDateChooser4;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
