@@ -80,5 +80,18 @@ public class controladorVehiculo {
             return false;
         }
     }
+    
+    
+    public boolean delete(Vehículo auto){
+        try {
+            this.sentencias.executeUpdate("delete from vehiculos where id="+auto);
+            return true;
+        } catch (SQLException ex) {
+            System.out.println("error en delete ");
+            return false;
+        }
+    }
+    
+    
 
 }
