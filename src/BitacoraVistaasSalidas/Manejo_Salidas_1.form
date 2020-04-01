@@ -69,7 +69,7 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="txtdestino" min="-2" pref="69" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="jDateChooser1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="fecha" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace type="separate" pref="26" max="32767" attributes="0"/>
@@ -140,7 +140,7 @@
                                           <Component id="txtdestino" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="txthsalida" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="jDateChooser1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="fecha" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -153,7 +153,7 @@
                       </Group>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="37" max="32767" attributes="0"/>
+                  <EmptySpace pref="41" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="guardar" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="cancelar" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -277,7 +277,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
+        <Component class="com.toedter.calendar.JDateChooser" name="fecha">
         </Component>
       </SubComponents>
     </Container>
