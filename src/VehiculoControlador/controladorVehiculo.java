@@ -39,8 +39,8 @@ public class controladorVehiculo {
     }
 
     public boolean create(Vehículo auto) {
+        
         try {
-
             this.sentencias.executeUpdate("insert into vehiculos values(null,'" + auto.getPlaca() + "','" + auto.getDescripcion() + "')", Statement.RETURN_GENERATED_KEYS);
             this.datos = this.sentencias.getGeneratedKeys();
             if (datos.next()) {
@@ -84,7 +84,7 @@ public class controladorVehiculo {
     
     public boolean delete(Vehículo auto){
         try {
-            this.sentencias.executeUpdate("delete from vehiculos where id="+auto);
+            this.sentencias.executeUpdate("delete from vehiculos where id="+auto.getId());
             return true;
         } catch (SQLException ex) {
             System.out.println("error en delete ");

@@ -23,6 +23,7 @@ public class main {
         control.conectar();
         control.create(prueba);
         control.update(prueba);
+        control.delete(prueba);
 //        System.out.println("");
 //        System.out.println(control.create(prueba));
 //        control.buscar(prueba);
