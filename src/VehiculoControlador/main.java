@@ -22,9 +22,9 @@ public class main {
         Vehículo prueba = new Vehículo ();
         control.conectar();
         control.create(prueba);
-        System.out.println("");
-        System.out.println(control.create(prueba));
-        control.buscar(prueba);
+        //System.out.println("");
+        //System.out.println(control.create(prueba));
+        //control.buscar(prueba);
     }
 
 }

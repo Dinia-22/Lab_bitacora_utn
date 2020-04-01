@@ -28,7 +28,7 @@ public class controladorVehiculo {
 
     public void conectar() {
         try {
-            this.conexion = DriverManager.getConnection("jdbc:mysql://localhost/vehículos?useServerPrepStmts=true", "root", "");
+            this.conexion = DriverManager.getConnection("jdbc:mysql://localhost/vehiculos?useServerPrepStmts=true", "root", "");
             this.sentencias = this.conexion.createStatement();
             //FrameConfi confi = new FrameConfi();
             //confi.setVisible(true);
@@ -41,7 +41,7 @@ public class controladorVehiculo {
     public boolean create(Vehículo auto) {
         try {
 
-            this.sentencias.executeUpdate("insert into vehículos values(null,'" + auto.getPlaca() + "','" + auto.getDescripcion() + "')", Statement.RETURN_GENERATED_KEYS);
+            this.sentencias.executeUpdate("insert into vehiculos values(null,'" + auto.getPlaca() + "','" + auto.getDescripcion() + "')", Statement.RETURN_GENERATED_KEYS);
             this.datos = this.sentencias.getGeneratedKeys();
             if (datos.next()) {
                 System.out.println(datos.getInt(1));
@@ -58,7 +58,7 @@ public class controladorVehiculo {
 
     public String buscar(Vehículo auto) {
         try {
-            this.datos = this.sentencias.executeQuery("select * from vehículos where placa=" + auto);//jala todos los registros que el id diga
+            this.datos = this.sentencias.executeQuery("select * from vehiculos where placa=" + auto);//jala todos los registros que el id diga
             if (datos.next()) {
                 System.out.println(datos.getInt(1));
                 System.out.println(datos.getString(2));
@@ -74,7 +74,7 @@ public class controladorVehiculo {
 
     public boolean update(Vehículo auto) {
         try {
-            this.sentencias.executeUpdate("update vehículos set placa='" + auto.getPlaca() + "' ,descripcion='" + auto.getDescripcion() + "' where id=" + auto.getId());
+            this.sentencias.executeUpdate("update vehiculos set placa='" + auto.getPlaca() + "' ,descripcion='" + auto.getDescripcion() + "' where id=" + auto.getId());
             return true;
         } catch (SQLException ex) {
             System.out.println("Error en update");
