@@ -5,6 +5,8 @@
  */
 package VehiculoControlador;
 
+import VehiculoModelo.Vehículo;
+
 /**
  *
  * @author juan1
@@ -17,11 +19,14 @@ public class main {
     public static void main(String[] args) {
         // TODO code application logic here
         controladorVehiculo control = new controladorVehiculo();
+        Vehículo prueba = new Vehículo ();
         control.conectar();
-        control.create("nissan","rojo");
+        control.create(prueba);
+     
+        
   
         
-        System.out.println(control.create("nissan","rojo"));
+        //System.out.println(control.create("nissan","rojo"));
     }
 
 }
