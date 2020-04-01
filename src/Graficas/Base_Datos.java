@@ -6,6 +6,8 @@
 package Graficas;
 
 //import Vehiculo.Vista.Administracion_Manejo;
+import BitacoraVistaLLegadas.Manejo_Llegadas;
+import BitacoraVistaasSalidas.Manejo_Salidas_1;
 import Clases.Conectar_base;
 import VehiculoVistas.Administracion_Manejo;
 import javax.swing.JOptionPane;
@@ -70,11 +72,21 @@ public class Base_Datos extends javax.swing.JFrame {
         salida.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         salida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/clock.png"))); // NOI18N
         salida.setText("Salidas");
+        salida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salidaActionPerformed(evt);
+            }
+        });
         jMenu1.add(salida);
 
         llegada.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
         llegada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/clock.png"))); // NOI18N
         llegada.setText("Llegadas");
+        llegada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                llegadaActionPerformed(evt);
+            }
+        });
         jMenu1.add(llegada);
 
         jMenuBar1.add(jMenu1);
@@ -119,6 +131,17 @@ public class Base_Datos extends javax.swing.JFrame {
         Administracion_Manejo registrar = new Administracion_Manejo();
         registrar.setVisible(true);
     }//GEN-LAST:event_vehiculoActionPerformed
+
+    private void salidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salidaActionPerformed
+        Manejo_Salidas_1 salidas = new Manejo_Salidas_1();
+        salidas.setVisible(true);
+    }//GEN-LAST:event_salidaActionPerformed
+
+    private void llegadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_llegadaActionPerformed
+        Manejo_Llegadas llegadas = new Manejo_Llegadas();
+        llegadas.setVisible(true);
+        
+    }//GEN-LAST:event_llegadaActionPerformed
 
     /**
      * @param args the command line arguments
