@@ -157,17 +157,5 @@ public class Bitacora {
             return true;    
         }
         return false;
-        
-        
-        
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
