@@ -6,6 +6,7 @@
 package VehiculoControlador;
 
 //import Grafica.FrameConfi;
+import Grafica.FrameConfi;
 import VehiculoModelo.Vehículo;
 
 import java.sql.Connection;
@@ -20,7 +21,6 @@ import javax.swing.JOptionPane;
  * @author juan1
  */
 public class controladorVehiculo {
-
 
     private Connection conexion;
     private Statement sentencias;
@@ -40,25 +40,25 @@ public class controladorVehiculo {
 
     public boolean create(Vehículo auto) {
         try {
-            //this.sentencias.executeUpdate("insert into vehículos values(null,'" + placa + "','" + descripcion + "')", Statement.RETURN_GENERATED_KEYS);
+
             this.sentencias.executeUpdate("insert into vehículos values(null,'" + auto.getPlaca() + "','" + auto.getDescripcion() + "')", Statement.RETURN_GENERATED_KEYS);
             this.datos = this.sentencias.getGeneratedKeys();
             if (datos.next()) {
                 System.out.println(datos.getInt(1));
                 System.out.println(" se agrego de manera exitosa");
                 return true;
+            } else {
+                return false;
             }
-            
         } catch (SQLException ex) {
             System.out.println("Error al agregar");
             return false;
         }
-        return false;
     }
 
-    public boolean buscar(int id) {
+    public String buscar(Vehículo auto) {
         try {
-            this.datos = this.sentencias.executeQuery("select * from vehiculos where id=" + id);//jala todos los registros que el id diga
+            this.datos = this.sentencias.executeQuery("select * from vehículos where placa=" + auto);//jala todos los registros que el id diga
             if (datos.next()) {
                 System.out.println(datos.getInt(1));
                 System.out.println(datos.getString(2));
@@ -69,13 +69,12 @@ public class controladorVehiculo {
         } catch (SQLException ex) {
             System.out.println("error en el read");
         }
-        return false;
+        return null;
     }
 
-    public boolean update(int id, String placa, String descripcion) {
+    public boolean update(Vehículo auto) {
         try {
-
-            this.sentencias.executeUpdate("update vehiculos set nombre='" + placa + "' ,ciudad='" + descripcion + "' where id=" + id);
+            this.sentencias.executeUpdate("update vehículos set placa='" + auto.getPlaca() + "' ,descripcion='" + auto.getDescripcion() + "' where id=" + auto.getId());
             return true;
         } catch (SQLException ex) {
             System.out.println("Error en update");

@@ -23,7 +23,8 @@ public class main {
         control.conectar();
         control.create(prueba);
         System.out.println("");
-        //System.out.println(control.create("nissan","rojo"));
+        System.out.println(control.create(prueba));
+        control.buscar(prueba);
     }
 
 }
