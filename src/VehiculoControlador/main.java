@@ -19,11 +19,13 @@ public class main {
     public static void main(String[] args) {
         // TODO code application logic here
         controladorVehiculo control = new controladorVehiculo();
-        Vehículo prueba = new Vehículo ();
+        Vehículo prueba = new Vehículo();
         control.conectar();
         //control.create(prueba);
-        control.update(prueba);
-        control.delete(prueba);
+        //control.update(prueba);
+        //control.delete(prueba);
+        prueba.setId(32);
+        System.out.println(control.delete(prueba));
 //        System.out.println("");
 //        System.out.println(control.create(prueba));
 //        control.buscar(prueba);

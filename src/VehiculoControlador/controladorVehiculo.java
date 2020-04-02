@@ -81,7 +81,6 @@ public class controladorVehiculo {
         }
     }
     
-    
     public boolean delete(Vehículo auto){
         try {
             this.sentencias.executeUpdate("delete from vehiculos where id="+auto.getId());

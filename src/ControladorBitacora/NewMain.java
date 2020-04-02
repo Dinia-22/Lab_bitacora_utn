@@ -22,6 +22,7 @@ public class NewMain {
         Bitacora h = new Bitacora();
         Controlador_Bitacora prueba = new Controlador_Bitacora();
         prueba.conectar();
+
         prueba.create(h);
         //prueba.buscar(" ABCD ");
         
