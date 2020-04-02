@@ -100,18 +100,6 @@ public class FrameConfi extends javax.swing.JFrame {
 
         botonSQL.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MySql", " " }));
 
-        tex1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tex1ActionPerformed(evt);
-            }
-        });
-
-        tex2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tex2ActionPerformed(evt);
-            }
-        });
-
         buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lupa.png"))); // NOI18N
         buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,6 +108,11 @@ public class FrameConfi extends javax.swing.JFrame {
         });
 
         guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/save.png"))); // NOI18N
+        guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel2Layout = new javax.swing.GroupLayout(panel2);
         panel2.setLayout(panel2Layout);
@@ -205,17 +198,13 @@ public class FrameConfi extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tex2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tex2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tex2ActionPerformed
-
-    private void tex1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tex1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tex1ActionPerformed
-
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
-        // TODO add your handling code here:
+        // Buscar
     }//GEN-LAST:event_buscarActionPerformed
+
+    private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
+        // Guardar
+    }//GEN-LAST:event_guardarActionPerformed
 
     /**
      * @param args the command line arguments

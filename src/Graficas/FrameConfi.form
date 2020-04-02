@@ -256,14 +256,8 @@
           </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="tex1">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tex1ActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="tex2">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tex2ActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="tex3">
         </Component>
@@ -283,6 +277,9 @@
               <Image iconType="3" name="/Imagenes/save.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardarActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
