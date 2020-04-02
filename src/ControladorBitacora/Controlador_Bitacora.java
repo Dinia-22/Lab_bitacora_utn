@@ -43,7 +43,8 @@ public class Controlador_Bitacora {
     public void create( Bitacora bit) {
         try {
 
-            this.sentencias.executeUpdate("insert into bitacora values(null,'"+ bit.getPlaca() +"','"+ bit.getDestino()+"')",Statement.RETURN_GENERATED_KEYS);
+            this.sentencias.executeUpdate("insert into bitacora values(null,'"+bit.getID()+"','"+ bit.getPlaca() +"','"+ bit.getDestino()+"')",Statement.RETURN_GENERATED_KEYS);
+           
             this.datos = this.sentencias.getGeneratedKeys();
             if (datos.next()) {
                 System.out.println(datos.getInt(1));
