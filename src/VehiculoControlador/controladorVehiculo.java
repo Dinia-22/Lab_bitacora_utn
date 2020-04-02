@@ -14,6 +14,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,6 +26,7 @@ public class controladorVehiculo {
     private Connection conexion;
     private Statement sentencias;
     private ResultSet datos;
+    ArrayList<String>filtroL=new ArrayList<String>();
 
     public void conectar() {
         try {
@@ -89,6 +91,12 @@ public class controladorVehiculo {
             System.out.println("error en delete ");
             return false;
         }
+    }
+    
+    public String filtrar(String descripcion){
+        
+        return null;
+        
     }
 
 
