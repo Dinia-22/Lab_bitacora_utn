@@ -6,7 +6,6 @@
 package ControladorBitacora;
 
 //import Salidad_Llegadas.Modelo.Bitacora;
-
 import BitacoraModelo.Bitacora;
 import VehiculoModelo.Vehículo;
 import java.sql.Connection;
@@ -21,7 +20,7 @@ import javax.swing.JOptionPane;
  * @author Dinia Alvarado
  */
 public class Controlador_Bitacora {
-    
+
     private Connection conexion;
 
     private Statement sentencias;
@@ -29,37 +28,35 @@ public class Controlador_Bitacora {
 
     public void conectar() {
         try {
-            this.conexion = DriverManager.getConnection("jdbc:mysql://localhost/vehiculos?useServerPrepStmts=true", "root", "");
+            this.conexion = DriverManager.getConnection("jdbc:mysql://localhost/vehículos?useServerPrepStmts=true", "root", "");
             this.sentencias = this.conexion.createStatement();
-
 //            FrameConfi confi = new FrameConfi();
 //            confi.setVisible(true);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error al conectar");
-            //System.out.println(" Error al conectar");
+            //JOptionPane.showMessageDialog(null, " Error al conectar");
+            System.out.println(" Error al conectar");
         }
     }
 
-    public void create( Bitacora bit) {
+    public boolean create(Bitacora bit) {
         try {
-
-            this.sentencias.executeUpdate("insert into bitacora values(null,'"+bit.getID()+"','"+ bit.getPlaca() +"','"+ bit.getDestino()+"')",Statement.RETURN_GENERATED_KEYS);
-           
+            this.sentencias.executeUpdate("insert into bitacora values(null,'" + bit.getPlaca() + "','" + bit.getDestino() + "')", Statement.RETURN_GENERATED_KEYS);
             this.datos = this.sentencias.getGeneratedKeys();
             if (datos.next()) {
                 System.out.println(datos.getInt(1));
+                //System.out.println(datos.getInt(2));
                 System.out.println(" se agrego de manera exitosa");
-
+                return true;
             }
         } catch (SQLException ex) {
             System.out.println("Error al agregar");
         }
-
+        return false;
     }
-    
-      public String buscar(String placa) {
+
+    public String buscar(String placa) {
         try {
-            this.datos = this.sentencias.executeQuery("select * from bitacora where placa=" + placa +"'");//jala todos los registros que el id diga
+            this.datos = this.sentencias.executeQuery("select * from bitacora where placa=" + placa + "'");//jala todos los registros que el id diga
             if (datos.next()) {
                 System.out.println(datos.getInt(1));
                 System.out.println(datos.getString(2));
@@ -82,8 +79,5 @@ public class Controlador_Bitacora {
             return false;
         }
     }
-    
-    
 
-    
 }

@@ -10,6 +10,7 @@ package BitacoraModelo;
  * @author Dinia Alvarado
  */
 public class Bitacora {
+    
     private int ID;
     private String Placa;
     private String Destino;
