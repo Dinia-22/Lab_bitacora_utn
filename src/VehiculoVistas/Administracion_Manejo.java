@@ -6,7 +6,9 @@
 package VehiculoVistas;
 
 import VehiculoControlador.controladorVehiculo;
+import VehiculoModelo.EstadoConexionV;
 import VehiculoModelo.Vehículo;
+
 
 /**
  *
@@ -16,13 +18,20 @@ public class Administracion_Manejo extends javax.swing.JFrame {
 
     controladorVehiculo vehiculoC = new controladorVehiculo();
     Vehículo prueba = new Vehículo();
+    
+    
 
     /**
      * Creates new form Administracion_Manejo
      */
     public Administracion_Manejo() {
         initComponents();
+        
     }
+//     public void mostrar (Vehículo r){
+//        jTextField1.setText(r.getPlaca());
+//        jTextField2.setText(r.getDescripcion());
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -93,6 +102,12 @@ public class Administracion_Manejo extends javax.swing.JFrame {
         jLabel4.setText("Placa");
 
         jLabel5.setText("Descripcion");
+
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
 
         nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/new.png"))); // NOI18N
         nuevo.setText(" ");
@@ -254,7 +269,20 @@ public class Administracion_Manejo extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // Buscar
         vehiculoC.buscar(prueba);
+//        String descripcion = jButton6.getText();
+//        String placa =jButton6.getText();
+//        Vehículo r;
+//        r= EstadoConexionV.filtarlista(1, placa, descripcion);
+//        if(r==null){
+//        
+//        }else{
+//            mostrar(r);
+//        }
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
 
     /**
      * @param args the command line arguments

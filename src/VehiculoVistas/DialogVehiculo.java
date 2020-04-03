@@ -5,6 +5,9 @@
  */
 package VehiculoVistas;
 
+import VehiculoModelo.EstadoConexionV;
+import VehiculoModelo.Vehículo;
+
 /**
  *
  * @author Maria Paula
@@ -19,6 +22,10 @@ public class DialogVehiculo extends javax.swing.JDialog {
         initComponents();
     }
 
+    public void mostrar (Vehículo r){
+        tex1.setText(r.getDescripcion());
+        jTable1.setToolTipText(r.getDescripcion());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -100,6 +107,11 @@ public class DialogVehiculo extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jTable1);
 
         check.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/check.png"))); // NOI18N
+        check.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkActionPerformed(evt);
+            }
+        });
 
         volver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cancelar.png"))); // NOI18N
 
@@ -160,6 +172,21 @@ public class DialogVehiculo extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void checkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkActionPerformed
+        // TODO add your handling code here:
+        String descripcion = check.getText();
+        String placa =check.getText();
+        Vehículo r;
+        r= EstadoConexionV.filtarlista(1, placa, descripcion);
+        if(r==null){
+        
+        }else{
+            mostrar(r);
+        }
+        
+        
+    }//GEN-LAST:event_checkActionPerformed
 
     /**
      * @param args the command line arguments

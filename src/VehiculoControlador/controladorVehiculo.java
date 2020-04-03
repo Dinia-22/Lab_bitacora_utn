@@ -26,11 +26,12 @@ public class controladorVehiculo {
     private Connection conexion;
     private Statement sentencias;
     private ResultSet datos;
-    ArrayList<String>filtroL=new ArrayList<String>();
+    //ArrayList<String>filtroL=new ArrayList<String>();
 
+  
     public void conectar() {
         try {
-            this.conexion = DriverManager.getConnection("jdbc:mysql://localhost/vehículos?useServerPrepStmts=true", "root", "");
+            this.conexion = DriverManager.getConnection("jdbc:mysql://localhost/vehiculo?useServerPrepStmts=true", "root", "");
             this.sentencias = this.conexion.createStatement();
             //FrameConfi confi = new FrameConfi();
             //confi.setVisible(true);
@@ -43,7 +44,7 @@ public class controladorVehiculo {
     public boolean create(Vehículo auto) {
         
         try {
-            this.sentencias.executeUpdate("insert into vehiculos values(null,'" + auto.getPlaca() + "','" + auto.getDescripcion() + "')", Statement.RETURN_GENERATED_KEYS);
+            this.sentencias.executeUpdate("insert into vehiculo values(null,'" + auto.getPlaca() + "','" + auto.getDescripcion() + "')", Statement.RETURN_GENERATED_KEYS);
             this.datos = this.sentencias.getGeneratedKeys();
             if (datos.next()) {
                 System.out.println(datos.getInt(1));
@@ -59,7 +60,7 @@ public class controladorVehiculo {
 
     public String buscar(Vehículo auto) {
         try {
-            this.datos = this.sentencias.executeQuery("select * from vehiculos where placa=" + auto);//jala todos los registros que el id diga
+            this.datos = this.sentencias.executeQuery("select * from vehiculo where placa=" + auto);//jala todos los registros que el id diga
             if (datos.next()) {
                 System.out.println(datos.getInt(1));
                 System.out.println(datos.getString(2));
@@ -75,7 +76,7 @@ public class controladorVehiculo {
 
     public boolean update(Vehículo auto) {
         try {
-            this.sentencias.executeUpdate("update vehiculos set placa='" + auto.getPlaca() + "' ,descripcion='" + auto.getDescripcion() + "' where id=" + auto.getId());
+            this.sentencias.executeUpdate("update vehiculo set placa='" + auto.getPlaca() + "' ,descripcion='" + auto.getDescripcion() + "' where id=" + auto.getId());
             return true;
         } catch (SQLException ex) {
             System.out.println("Error en update");
@@ -85,7 +86,7 @@ public class controladorVehiculo {
     
     public boolean delete(Vehículo auto){
         try {
-            this.sentencias.executeUpdate("delete from vehiculos where id="+auto.getId());
+            this.sentencias.executeUpdate("delete from vehiculo where id="+auto.getId());
             return true;
         } catch (SQLException ex) {
             System.out.println("error en delete ");
@@ -93,11 +94,7 @@ public class controladorVehiculo {
         }
     }
     
-    public String filtrar(String descripcion){
-        
-        return null;
-        
-    }
+    
 
 
 }

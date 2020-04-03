@@ -5,6 +5,16 @@
  */
 package Grafica;
 
+import Graficas.Ini;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Maria Paula
@@ -14,6 +24,14 @@ public class FrameConfi extends javax.swing.JFrame {
     /**
      * Creates new form FrameConfi
      */
+    
+    JFileChooser seleccion = new JFileChooser();
+    File ini;
+    FileInputStream entrada;
+    FileOutputStream salida;
+
+    Ini guardar = new Ini();
+    
     public FrameConfi() {
         initComponents();
     }
@@ -200,10 +218,35 @@ public class FrameConfi extends javax.swing.JFrame {
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         // Buscar
+        Ini con = new Ini();
+        try {
+            con.verificar();
+        } catch (SQLException ex) {
+            Logger.getLogger(FrameConfi.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_buscarActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
         // Guardar
+                Ini confi= new Ini();
+         if (seleccion.showDialog(null, "Guardar") == JFileChooser.APPROVE_OPTION) {
+            ini = seleccion.getSelectedFile();
+
+            String ruta = seleccion.getSelectedFile().toString();
+            setTitle(ruta);
+            if (ini.getName().endsWith("txt")) {
+                String documento = tex1.getText();
+                String mensaje = this.guardar.GuardarArchivo(ini, documento);
+
+                if (mensaje != null) {
+                    JOptionPane.showMessageDialog(null, mensaje);
+                } else {
+                    JOptionPane.showMessageDialog(null, "No es compatible el archivo");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Archivo Guardado");
+            }
+        }
     }//GEN-LAST:event_guardarActionPerformed
 
     /**
