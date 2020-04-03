@@ -7,12 +7,15 @@ package ControladorBitacora;
 
 //import Salidad_Llegadas.Modelo.Bitacora;
 import BitacoraModelo.Bitacora;
-import VehiculoModelo.Vehículo;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,7 +31,7 @@ public class Controlador_Bitacora {
 
     public void conectar() {
         try {
-            this.conexion = DriverManager.getConnection("jdbc:mysql://localhost/vehículos?useServerPrepStmts=true", "root", "");
+            this.conexion = DriverManager.getConnection("jdbc:mysql://localhost/vehiculos?useServerPrepStmts=true", "root", "");
             this.sentencias = this.conexion.createStatement();
 //            FrameConfi confi = new FrameConfi();
 //            confi.setVisible(true);
@@ -38,20 +41,30 @@ public class Controlador_Bitacora {
         }
     }
 
-    public boolean create(Bitacora bit) {
+    public void create(Bitacora bit) {
         try {
-            this.sentencias.executeUpdate("insert into bitacora values(null,'" + bit.getPlaca() + "','" + bit.getDestino() + "')", Statement.RETURN_GENERATED_KEYS);
-            this.datos = this.sentencias.getGeneratedKeys();
-            if (datos.next()) {
-                System.out.println(datos.getInt(1));
-                //System.out.println(datos.getInt(2));
-                System.out.println(" se agrego de manera exitosa");
-                return true;
-            }
+            PreparedStatement sentencia;
+            sentencia = conexion.prepareStatement("insert bitacora values(null,?,?,?,?,?,?,?,?,?)");
+           
+            sentencia.setString(1, bit.getPlaca());
+            sentencia.setString(2,bit.getProvincia());
+            sentencia.setString(3, bit.getDestino());
+            sentencia.setInt(4,bit.getFechaSalida());
+            sentencia.setInt(5, bit.getHoraSalida());
+            sentencia.setInt(6, bit.getKinicial());
+            sentencia.setInt(7, bit.getFechaLlegada());
+            sentencia.setInt(8, bit.getHoraLlegada());
+            sentencia.setInt(9, bit.getKfinal());
+        
+            sentencia.execute();
+
         } catch (SQLException ex) {
-            System.out.println("Error al agregar");
+            Logger.getLogger(Controlador_Bitacora.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false;
+
+       
+        
+
     }
 
     public String buscar(String placa) {
