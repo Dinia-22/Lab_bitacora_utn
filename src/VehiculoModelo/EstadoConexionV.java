@@ -26,7 +26,7 @@ public class EstadoConexionV {
 
     public static Vehículo filtarlista(int id, String placa, String descripcion) {
         Vehículo r = null;
-        String q = "SELECT * FROM Datos" + " WHERE Nombre='" + descripcion + "'";
+        String q = "SELECT * FROM vehiculo" +"WHERE placa="+placa+ " WHERE descripcion='" + descripcion + "'";
         try {
             resultado = sentencia.executeQuery(q);
             System.out.println("Correcto");
