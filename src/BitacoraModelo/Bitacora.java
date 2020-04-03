@@ -14,13 +14,14 @@ public class Bitacora {
     private int ID;
     private String Placa;
     private String Destino;
+    private String Provincia;
     private int FechaSalida;
     private int FechaLlegada;
     private int HoraSalida;
     private int HoraLlegada;
     private int Kfinal;
     private int Kinicial;
-    private String Provincia;
+   
 
     public String getProvincia() {
         return Provincia;
@@ -123,15 +124,15 @@ public class Bitacora {
 
     public Bitacora() {
         this.ID = 0;
-        this.Placa = "";
-        this.Destino = " ";
-        this.FechaSalida = 0;
-        this.FechaLlegada = 0;
-        this.HoraSalida = 0;
-        this.HoraLlegada = 0;
-        this.Kfinal = 0;
-        this.Kinicial = 0;
-        this.Provincia=" ";
+        this.Placa = "ABCD";
+        this.Destino = "LIBERIA";
+        this.FechaSalida = 23;
+        this.FechaLlegada = 25;
+        this.HoraSalida = 4;
+        this.HoraLlegada = 10;
+        this.Kfinal = 15;
+        this.Kinicial = 10;
+        this.Provincia="GUANACASTE ";
     }
 
     public Bitacora(int ID,String Placa, String Destino, int FechaSalida, int FechaLlegada, int HoraSalida, int HoraLlegada, int Kfinal, int Kinicial, String Provincia) {
